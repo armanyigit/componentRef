@@ -41,9 +41,9 @@ struct LivePhotoView: View {
                     .padding()
             }
             .padding()
-            .onChange(of: selectedItem) { _ in
+            .onChange(of: selectedItem) { oldValue, newValue in
                 Task {
-                    if let data = try? await selectedItem?.loadTransferable(type: Data.self) {
+                    if let data = try? await newValue?.loadTransferable(type: Data.self) {
                         livePhotoData = data
                     }
                 }

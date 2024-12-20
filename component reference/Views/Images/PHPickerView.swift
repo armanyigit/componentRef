@@ -62,18 +62,18 @@ struct PHPickerView: View {
                 }
             }
             .padding()
-            .onChange(of: singleSelectedItem) { _ in
+            .onChange(of: singleSelectedItem) { oldValue, newValue in
                 Task {
-                    if let data = try? await singleSelectedItem?.loadTransferable(type: Data.self),
+                    if let data = try? await newValue?.loadTransferable(type: Data.self),
                        let uiImage = UIImage(data: data) {
                         singleSelectedImage = Image(uiImage: uiImage)
                     }
                 }
             }
-            .onChange(of: selectedItems) { _ in
+            .onChange(of: selectedItems) { oldValue, newValue in
                 Task {
                     selectedImages.removeAll()
-                    for item in selectedItems {
+                    for item in newValue {
                         if let data = try? await item.loadTransferable(type: Data.self),
                            let uiImage = UIImage(data: data) {
                             selectedImages.append(Image(uiImage: uiImage))

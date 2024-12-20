@@ -68,6 +68,33 @@ struct MainNavigationView: View {
         ComponentSection(title: "Navigation", components: [
             Component(title: "Navigation Examples", isImplemented: true, view: AnyView(NavigationExamplesView())),
             Component(title: "Page View", isImplemented: true, view: AnyView(PageView()))
+        ]),
+        ComponentSection(title: "Tab Views", components: [
+            Component(title: "Basic Tab Views", isImplemented: true, view: AnyView(BasicTabView())),
+            Component(title: "Custom Tab Views", isImplemented: true, view: AnyView(CustomTabView())),
+            Component(title: "Programmable Tabs", isImplemented: true, view: AnyView(ProgrammableTabView())),
+            Component(title: "Badged Tabs", isImplemented: true, view: AnyView(BadgedTabView())),
+            Component(title: "Animated Tabs", isImplemented: true, view: AnyView(AnimatedTabView()))
+        ]),
+        ComponentSection(title: "Sheets & Popovers", components: [
+            Component(title: "Sheets", isImplemented: true, view: AnyView(SheetView())),
+            Component(title: "Popovers", isImplemented: true, view: AnyView(PopoverView())),
+            Component(title: "Full Screen Covers", isImplemented: true, view: AnyView(FullScreenCoverView())),
+            Component(title: "Custom Presentations", isImplemented: true, view: AnyView(CustomPresentationView()))
+        ]),
+        ComponentSection(title: "Gestures", components: [
+            Component(title: "Gestures", isImplemented: true, view: AnyView(GesturesView()))
+        ]),
+        ComponentSection(title: "Animations", components: [
+            Component(title: "Basic Animations", isImplemented: true, view: AnyView(BasicAnimationsView())),
+            Component(title: "Spring Animations", isImplemented: true, view: AnyView(SpringAnimationsView())),
+            Component(title: "Custom Animations", isImplemented: true, view: AnyView(CustomAnimationsView())),
+            Component(title: "Path Animations", isImplemented: true, view: AnyView(PathAnimationsView())),
+            Component(title: "Keyframe Animations", isImplemented: true, view: AnyView(KeyframeAnimationsView())),
+            Component(title: "Particle Effects", isImplemented: true, view: AnyView(ParticleEffectsView()))
+        ]),
+        ComponentSection(title: "Progress & Activity", components: [
+            Component(title: "Progress & Activity", isImplemented: true, view: AnyView(ProgressExampleView()))
         ])
     ]
     
