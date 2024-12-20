@@ -2,9 +2,9 @@ import SwiftUI
 
 struct AttributedStringView: View {
     var attributedText: AttributedString {
-        var string = AttributedString("Styled Text Example\n")
-        string.foregroundColor = .blue
+        var string = AttributedString("Attributed String Examples\n")
         string.font = .title.bold()
+        string.foregroundColor = .blue
         
         let subtitle = AttributedString("\nThis text demonstrates various attributes:\n\n")
         string += subtitle
@@ -25,47 +25,58 @@ struct AttributedStringView: View {
         return string
     }
     
-    private var linkText: AttributedString = {
-        try! AttributedString(markdown: "Visit [Apple's website](https://www.apple.com)")
-    }()
-    
-    private var dateText: AttributedString = {
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        var dateString = AttributedString(formatter.string(from: date))
-        dateString.foregroundColor = .blue
-        return dateString
-    }()
+    var markdownText: AttributedString {
+        try! AttributedString(markdown: """
+            # Markdown Support
+            
+            - **Bold text**
+            - *Italic text*
+            - ***Bold and italic***
+            - [A link](https://www.apple.com)
+            - `Code style`
+            """)
+    }
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: 30) {
                 Text(attributedText)
                     .padding()
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(10)
                 
-                Divider()
+                Text(markdownText)
+                    .padding()
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(10)
                 
-                VStack(alignment: .leading) {
-                    Text("Link Example")
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Date Formatting")
                         .font(.headline)
-                    Text(linkText)
+                    
+                    let formattedDate: Text = {
+                        let date = Date()
+                        let formatter = DateFormatter()
+                        formatter.dateStyle = .full
+                        var dateString = AttributedString(formatter.string(from: date))
+                        dateString.foregroundColor = .blue
+                        return Text(dateString)
+                    }()
+                    
+                    formattedDate
                 }
-                .padding(.horizontal)
-                
-                Divider()
-                
-                VStack(alignment: .leading) {
-                    Text("Date Formatting Example")
-                        .font(.headline)
-                    Text(dateText)
-                }
-                .padding(.horizontal)
+                .padding()
+                .background(Color.gray.opacity(0.1))
+                .cornerRadius(10)
             }
+            .padding()
         }
+        .navigationTitle("AttributedString")
     }
 }
 
 #Preview {
-    AttributedStringView()
+    NavigationView {
+        AttributedStringView()
+    }
 } 

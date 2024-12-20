@@ -1,29 +1,29 @@
 import SwiftUI
 
-struct ListSection: Identifiable {
+struct SectionItem: Identifiable {
     let id = UUID()
     let title: String
-    let items: [ListItem]
+    let subtitle: String
 }
 
 struct SectionListView: View {
-    @State private var sections = [
-        ListSection(title: "Fruits", items: [
-            ListItem(title: "Apple", subtitle: "Red and sweet"),
-            ListItem(title: "Banana", subtitle: "Yellow and creamy"),
-            ListItem(title: "Orange", subtitle: "Citrus delight")
+    let sections = [
+        (header: "First Section", items: [
+            SectionItem(title: "Item 1", subtitle: "Description 1"),
+            SectionItem(title: "Item 2", subtitle: "Description 2"),
+            SectionItem(title: "Item 3", subtitle: "Description 3")
         ]),
-        ListSection(title: "Vegetables", items: [
-            ListItem(title: "Carrot", subtitle: "Orange and crunchy"),
-            ListItem(title: "Broccoli", subtitle: "Green and healthy"),
-            ListItem(title: "Tomato", subtitle: "Red and juicy")
+        (header: "Second Section", items: [
+            SectionItem(title: "Item 4", subtitle: "Description 4"),
+            SectionItem(title: "Item 5", subtitle: "Description 5"),
+            SectionItem(title: "Item 6", subtitle: "Description 6")
         ])
     ]
     
     var body: some View {
         List {
-            ForEach(sections) { section in
-                Section(header: Text(section.title)) {
+            ForEach(sections, id: \.header) { section in
+                Section(header: Text(section.header)) {
                     ForEach(section.items) { item in
                         VStack(alignment: .leading) {
                             Text(item.title)
@@ -36,6 +36,9 @@ struct SectionListView: View {
                 }
             }
         }
-        .navigationTitle("Sectioned List")
     }
+}
+
+#Preview {
+    SectionListView()
 } 

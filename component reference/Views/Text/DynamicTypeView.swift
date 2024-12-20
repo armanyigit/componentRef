@@ -4,14 +4,18 @@ struct DynamicTypeView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 30) {
+                Text("Dynamic Type Examples")
+                    .font(.largeTitle)
+                    .padding(.bottom)
+                
                 Group {
-                    Text("Dynamic Type Examples")
-                        .font(.largeTitle)
+                    Text("Default Text Styles")
+                        .font(.headline)
                     
                     Text("Large Title")
                         .font(.largeTitle)
                     
-                    Text("Title 1")
+                    Text("Title")
                         .font(.title)
                     
                     Text("Title 2")
@@ -19,9 +23,7 @@ struct DynamicTypeView: View {
                     
                     Text("Title 3")
                         .font(.title3)
-                }
-                
-                Group {
+                    
                     Text("Headline")
                         .font(.headline)
                     
@@ -33,29 +35,31 @@ struct DynamicTypeView: View {
                     
                     Text("Callout")
                         .font(.callout)
-                    
-                    Text("Caption 1")
-                        .font(.caption)
-                    
-                    Text("Caption 2")
-                        .font(.caption2)
                 }
-            }
-            .padding()
-            
-            VStack(alignment: .leading, spacing: 20) {
-                Text("Dynamic Type Customization")
-                    .font(.headline)
-                    .padding(.top)
                 
-                Text("This text uses custom font size with dynamic type")
-                    .font(.custom("Helvetica", size: 16, relativeTo: .body))
-                
-                Text("This text scales with accessibility settings")
-                    .dynamicTypeSize(.large)
-                
-                Text("This text has a maximum dynamic type size")
-                    .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                Group {
+                    Text("Dynamic Type Size Control")
+                        .font(.headline)
+                        .padding(.top)
+                    
+                    Text("This text uses dynamic type size")
+                        .dynamicTypeSize(.large)
+                        .padding()
+                        .background(Color.blue.opacity(0.1))
+                        .cornerRadius(10)
+                    
+                    Text("This text has a maximum size limit")
+                        .dynamicTypeSize(...DynamicTypeSize.accessibility2)
+                        .padding()
+                        .background(Color.green.opacity(0.1))
+                        .cornerRadius(10)
+                    
+                    Text("Custom font with dynamic type")
+                        .font(.custom("Helvetica", size: 16, relativeTo: .body))
+                        .padding()
+                        .background(Color.purple.opacity(0.1))
+                        .cornerRadius(10)
+                }
             }
             .padding()
         }
